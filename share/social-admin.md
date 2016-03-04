@@ -30,12 +30,29 @@ theme: dark
 [slide]
 
 ## 一切的一切的开始
-[Node.js](https://nodejs.org/en/) --- 事件驱动(event driven)、非阻塞 I/O(non-blocking I/O)
+[Node.js](https://nodejs.org/en/) --- 事件驱动(event driven)、非阻塞 I/O 模型(non-blocking I/O model)
+
+不止是一个Javascript Runtime，更是一个生态
 
 [NPM](https://www.npmjs.com/)(Node Package Manager) --- Node.js 包管理工具
 
+诸如此类的还有browserify、bower
 
 
+[slide]
+## 新版管理台文件目录结构
+![文件树](../images/tree.jpg)
+
+[slide]
+### /.bin --- 存放命令脚本的文件夹
+### /.i18n --- 多语言
+### /config --- 基础配置
+### /karma --- 测试配置
+### /mocks --- mock数据
+### /server --- 本地开发服务配置，其中包含dispatcher、webpack-hmr以及mock等中间件(middlewares), 框架为koa V2.0-alpha
+### /src --- 源文件目录
+### /tests --- 测试脚本
+### /webpack --- Webpack 基础配置
 [slide]
 ## 基本语法指南
 ----
