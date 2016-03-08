@@ -35,7 +35,6 @@ theme: dark
 
 [NPM](https://www.npmjs.com/)(Node Package Manager) --- Node.js 包管理工具 {:.flexbox.vleft}
 
-诸如此类的还有browserify、bower {:.flexbox.vleft}
 
 
 [slide]
@@ -75,7 +74,6 @@ theme: dark
 "test:dev": "npm test -- --watch",
 "deploy": "better-npm-run deploy" // 部署
 ```
-注：better-npm-run 为一个旨在避免在package.json中硬编码命令脚本和跨平台执行脚本的工具，可通过npm安装 {:&.flexbox.vleft}
 
 [slide]
 
@@ -85,20 +83,26 @@ theme: dark
 
 [slide]
 ## 路由
+----
 感谢`director.js`，以及`nd-router`！！！{:&.flexbox.vleft}
 
-而`nd-spa`中集成的`router.js`以及`nd-template`则使路由配置变得简单 {:.flexbox.vleft}
+同时`nd-spa`中集成的`router.js`以及`nd-template`则使路由配置变得简单 {:.flexbox.vleft}
 
 [slide]
 ## 你只需要这样
 ```javascript
 {
+  // 图标
   icon: 'page',
+  // 地址
   name: 'applist',
+  // 名称
   title: __('应用列表'),
+  // 子菜单栏
   folders: [{
     icon: 'page',
     title: __('应用管理'),
+    // 路由
     routes: [{
       route: 'app',
       title: __('应用列表'),
@@ -157,6 +161,20 @@ theme: dark
 * 虚拟DOM --- DOM Diff 算法 和 服务端渲染
 * 数据流 --- 单向数据流, 子组件只能通过`props`来获取父组件传递下来的数据
 * 状态容器 --- React组件本身的行为受制于它的状态`state`，一旦状态发生改变，组件就会重新渲染`render`
+[slide]
+##重要的生命周期函数(lifecycle)
+
+```javascript
+componentWillMount () // 在虚拟DOM节点将要挂载到真实DOM时触发，只会触发一次
+componentDidMount () // 挂载完成时触发，只会触发一次
+componentWillReceiveProps (nextProps) // 有新的props传入组件时触发，但props有可能不会发生改变且不一定会使组件更新
+componentWillUpdate (state) // 组件将要更新时触发
+componentDidUpdate (prevProps, prevState) // 组件更新完成触发
+componentWillUnmount () // 将要从真实DOM中销毁时触发
+shouldComponentUpdate (nextProps, nextState) // 通过返回true || fasle 来决定组件是否更新
+```
+
+[A implies B does not imply B implies A](https://facebook.github.io/react/blog/2016/01/08/A-implies-B-does-not-imply-B-implies-A.html) {:.flexbox.vleft}
 [slide]
 ## Redux
 
