@@ -17,12 +17,12 @@ else {
 const msgType = {
   hello: 'hello',
   world: 'world',
-  'wow': 'wow',
+  wow: 'wow',
   .......
 }
 
 if (msgType.hasOwnProperty(msg.type)) {
-  console.log(msg.type)
+  console.log(msgType(msg.type))
 } else {
   console.log('我不知道你在说什么')
 }
