@@ -79,7 +79,6 @@ Vue.mixin({
 [slide]
 
 ## 旧王已死，新王万岁
----
 
 > [Mixins Are Dead. Long Live Composition](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.7c3w8g38r)
 
@@ -144,8 +143,14 @@ Vue.component('fade', {
 ## HOC 的优势
 
 * 非侵入式
-* 向后兼容性好。可以很友好的转化为 `decorator`
-* 拓展性。可以通过传递参数的形式对 `HOC` 进行定制，比如 `antd` 中的 [`Form.create()`](https://github.com/ant-design/ant-design/blob/master/components/form/index.tsx#L9) 以及 `react-redux` 中的 [`connect`](https://github.com/reactjs/react-redux/blob/68a4f2b78671329e10bfca87f8f1c82cc8690459/src/components/connect.js#L35)
+* 可以很友好的转化为 `decorator`，是的书写极为简便。
+* 拓展性好。可以通过传递参数的形式对 `HOC` 进行定制。
+
+---
+### 例子： {:.flexbox.vleft}
+
+* `antd` 中的 [`Form.create()`](https://github.com/ant-design/ant-design/blob/master/components/form/index.tsx#L9)
+* `react-redux` 中的 [`connect`](https://github.com/reactjs/react-redux/blob/68a4f2b78671329e10bfca87f8f1c82cc8690459/src/components/connect.js#L35)
 
 [slide]
 
@@ -153,3 +158,119 @@ Vue.component('fade', {
 ----
 
 `Functional Programing` 才是我想安利的
+
+`Javascript` 作为一个典型的 `多范式` 编程语言，而且 `function` 还是 `一等公民`
+
+[slide]
+---
+## 在函数式编程之前
+
+什么是函数？
+
+* 在数学中对[函数](https://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B0)的定义是：输入值集合中的每项元素皆能对应唯一一项输出值集合中的元素。 {:&.rollIn}
+
+[slide]
+
+## 纯函数
+
+相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用，也不依赖外部环境的状态。
+
+[slide]
+
+```javascript
+// 这很纯
+const getGreat = (a) => {
+  return (b) => {
+    return a > b ? a : b
+  }
+}
+
+// 这个也很纯
+Array.prototype.slice
+
+
+// 这不纯
+const b = 4
+const getLess = (a) => {
+  return a > b ? b : a
+}
+
+// 这个也不纯
+Array.prototype.splice
+
+```
+
+[slide]
+
+## 柯里化(currying)
+
+把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数
+
+```javascript
+// 一般
+const add = (x, y) => x + y
+
+add(1,2) // => 3
+
+// 柯里化
+const add = x => {
+  return y => x + y
+}
+
+const add5 = add(5)
+
+const add100 = add(100)
+
+add5(10) // => 15
+
+add100(100) // => 200
+```
+函数柯里化可以在某种意义上实现缓存和预加载功能
+
+[slide]
+
+## Compose
+```javascript
+//两个函数的组合
+const compose = (f, g) => (x => f(g(x)));
+
+const add1 = x => x + 1;
+const mul5 = x => x * 5;
+
+compose(mul5, add1)(2);
+// =>15
+```
+
+[slide]
+
+## 更多
+
+### 酷炫的东西 {:.flexbox.vleft}
+* Functor: 链式调用
+* Maybe
+
+### 库 {:.flexbox.vleft}
+* [ladash](https://www.npmjs.com/package/lodash)
+* [underscore](https://www.npmjs.com/package/underscore)
+
+### 书籍 {:.flexbox.vleft}
+
+* [Javascript 函数式编程指南](https://github.com/MostlyAdequate/mostly-adequate-guide)
+
+[slide]
+
+## 回过头去看 `react-redux` 与 `React`
+
+* [`stateless component`](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions)
+
+```javascript
+ export default componentA = (props) => <div>{{props.name}}</div>
+```
+> In an ideal world, most of your components would be stateless functions because in the future we’ll also be able to make performance optimizations specific to these components by avoiding unnecessary checks and memory allocations. This is the recommended pattern, when possible.
+
+
+---
+
+[slide]
+
+## Thanks
