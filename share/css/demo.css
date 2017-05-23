@@ -9,3 +9,11 @@
 ul {
   width: 100%;
 }
+
+html, body {
+  font-family: 'Fira Code';
+}
+
+code {
+  font-family: 'Fira Code' !important;
+}

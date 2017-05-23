@@ -193,7 +193,7 @@ compose(...functions) // 绑定增强器(Enhancer)
 ```
 在实际开发中，通常通过这种方式来创建store {:.flexbox.vleft}
 
-```javascrip
+```javascript
 const rootReducer = combineReducers(...reducers)
 let finalCreateStore = applyMiddleware(...middlewares)(createStore)
 finalCreateStore = compose(...enhancers)(finalCreateStore)
